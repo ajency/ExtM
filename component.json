@@ -1,0 +1,41 @@
+{
+    "name": "extended.marionette",
+    "description": "Extended marionette components",
+    "version": "1.8.8",
+    "repo": "surajajency/ExtM",
+    "main": "lib/amd/marionette.extm.js",
+    "keywords": [
+        "backbone",
+        "plugin",
+        "marionette",
+        "composite",
+        "architecture",
+        "single",
+        "page",
+        "app",
+        "client",
+        "browser"
+    ],
+    "license":  "MIT",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/surajajency/ExtM/blob/master/license.txt"
+        }
+    ],
+    "author": {
+        "name": "Suraj Air",
+        "email": "suraj@ajency.in",
+        "web": "http://ajency.in"
+    },
+    "dependencies": {
+        "marionettejs/backbone.marionette": "*",
+        "marionettejs/backbone.babysitter": "*",
+        "marionettejs/backbone.wreqr": "*",
+        "jashkenas/backbone": "*",
+        "jashkenas/underscore": "*"
+    },
+    "scripts": [
+        "lib/amd/marionette.extm.js"
+    ]
+}

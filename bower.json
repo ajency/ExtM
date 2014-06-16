@@ -1,0 +1,34 @@
+{
+  "name": "ExtM",
+  "version": "0.0.1",
+  "authors": [
+    "Suraj Air <suraj@ajency.in>",
+    "Team Ajency <team@ajency.in>"
+  ],
+  "description": "Extended marionette components",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "Marionette",
+    "Extended marionette",
+    "backbone",
+    "underscore"
+  ],
+  "license": "MIT",
+  "homepage": "http://ajency.in/open-source/frameworks/ExtM",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "marionette": "~1.8.8"
+  },
+  "dependencies": {
+    "marionette": "~1.8.8"
+  }
+}
