@@ -2,6 +2,7 @@
 // Generated on Sun Jun 15 2014 10:34:36 GMT+0530 (IST)
 
 module.exports = function (config) {
+
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -14,11 +15,11 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
         files: [
             'src/require.config.js',
-            'tests/test-main.js',
+            'spec/javascripts/helpers/spechelper.js',
+            'spec/test-main.js',
             { pattern : 'bower_components/**/*.js', included : false },
             { pattern: 'src/**/*.js', included: false },
-            { pattern: 'tests/helpers/**/*.js', included: false },
-            { pattern: 'tests/specs/*.jspec.js', included: false }
+            { pattern: 'spec/javascripts/specs/**/*.js', included: false }
         ],
 
         // list of files to exclude
