@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>require.config.coffee</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../", thisFile = "src/require.config.coffee", defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container"><div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+      <tr>
+        <td class="docs">
+          <h1>require.config.coffee</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1">&#182;</a>
+</div>
+<p>load all the scripts required for SPA</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre><span class="nx">requirejs</span><span class="p">.</span><span class="nx">config</span>
+   <span class="nv">urlArgs : </span><span class="s">&quot;?ver=</span><span class="si">#{</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span>
+   <span class="nv">baseUrl : </span><span class="s">&#39;../&#39;</span>
+   <span class="nv">paths :</span>
+      <span class="nv">jquery : </span><span class="s">&#39;bower_components/jquery/dist/jquery&#39;</span>
+      <span class="nv">backbone : </span><span class="s">&#39;bower_components/backbone/backbone&#39;</span>
+      <span class="nv">underscore : </span><span class="s">&#39;bower_components/underscore/underscore&#39;</span>
+      <span class="nv">marionette : </span><span class="s">&#39;bower_components/marionette/lib/core/backbone.marionette&#39;</span>
+      <span class="nv">mustache : </span><span class="s">&#39;bower_components/mustache/mustache&#39;</span>
+      <span class="nv">text : </span><span class="s">&#39;bower_components/requirejs-text/text&#39;</span>
+      <span class="nv">backbonesyphon : </span><span class="s">&#39;bower_components/backbone.syphon/lib/amd/backbone.syphon&#39;</span>
+      <span class="s">&#39;backbone.wreqr&#39;</span> <span class="o">:</span> <span class="s">&#39;bower_components/backbone.wreqr/lib/backbone.wreqr&#39;</span>
+      <span class="s">&#39;backbone.babysitter&#39;</span> <span class="o">:</span> <span class="s">&#39;bower_components/backbone.babysitter/lib/backbone.babysitter&#39;</span>
+      <span class="nv">plupload : </span><span class="s">&#39;bower_components/plupload/js/plupload.full.min&#39;</span>
+      <span class="nv">jasmineajax : </span><span class="s">&#39;bower_components/jasmine-ajax/lib/mock-ajax&#39;</span>
+      <span class="nv">jasminejquery : </span><span class="s">&#39;bower_components/jasmine-jquery/lib/jasmine-jquery&#39;</span>
+      <span class="nv">jqueryvalidate : </span><span class="s">&#39;bower_components/jquery.validation/dist/jquery.validate&#39;</span>
+      <span class="nv">plupload : </span><span class="s">&#39;bower_components/plupload/js/plupload.full.min&#39;</span>
+      <span class="nv">jqueryvalidate : </span><span class="s">&#39;bower_components/jquery.validation/dist/jquery.validate&#39;</span>
+   <span class="nv">shim :</span>
+      <span class="nv">jquery : </span><span class="p">[</span> <span class="s">&#39;underscore&#39;</span> <span class="p">]</span>
+      <span class="nv">backbone : </span><span class="p">[</span> <span class="s">&#39;jquery&#39;</span><span class="p">,</span> <span class="s">&#39;underscore&#39;</span> <span class="p">]</span>
+      <span class="nv">marionette :</span>
+         <span class="nv">deps : </span><span class="p">[</span> <span class="s">&#39;backbone&#39;</span><span class="p">,</span> <span class="s">&#39;backbone.wreqr&#39;</span><span class="p">,</span> <span class="s">&#39;backbone.babysitter&#39;</span> <span class="p">]</span>
+      <span class="nv">backbonesyphon : </span><span class="p">[</span> <span class="s">&#39;backbone&#39;</span> <span class="p">]</span>
+      <span class="nv">jqueryvalidate : </span><span class="p">[</span> <span class="s">&#39;jquery&#39;</span> <span class="p">]</span>
+      <span class="nv">bootstrap : </span><span class="p">[</span> <span class="s">&#39;jquery&#39;</span> <span class="p">]</span>
+      <span class="nv">jasminejquery : </span><span class="p">[</span><span class="s">&#39;jquery&#39;</span><span class="p">]</span>
+      <span class="nv">jasmineajax : </span><span class="p">[</span><span class="s">&#39;jquery&#39;</span><span class="p">]</span>
+      <span class="nv">plupload :</span>
+         <span class="nv">deps : </span><span class="p">[</span> <span class="s">&#39;jquery&#39;</span> <span class="p">]</span>
+         <span class="nv">exports : </span><span class="s">&#39;plupload&#39;</span>
+</pre></div>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  </div>
+</body>
+</html>

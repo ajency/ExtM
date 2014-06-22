@@ -1,3 +1,0 @@
-##Extended Marionette.Application Object
-
-

@@ -45,6 +45,8 @@
     "grunt-notify": "~0.2.16",
     "karma": "~0.12.16",
     "karma-jasmine": "~0.2.2",
-    "karma-chrome-launcher": "~0.1.4"
+    "karma-chrome-launcher": "~0.1.4",
+    "grunt-docker": "0.0.8",
+    "grunt-lintspaces": "~0.5.1"
   }
 }
