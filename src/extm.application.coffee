@@ -1,60 +1,42 @@
 ##
 ## Set backbone overrites or mixins
 ##
-define [ 'marionette' ], ( Marionette )->
+define ['src/extm.namespace', 'marionette', 'backbone', 'underscore' ], (Extm, Marionette, Backbone, _ )->
 
    # Extends the Marionette.Application to add some additional functions
-   _.extend Marionette.Application::,
+   class Extm.Application extends Marionette.Application
 
-      onStart : ->
+      start : ( options = {} ) ->
+         # let the default behavior continue
+         super options
+
+         if not options.regions
+            throw new Error
+
+         { regions, @rootRoute } = options
+
+         @rootRoute = '' if  _.isUndefined @rootRoute
+
+         @_setUpAppRegions regions
          @startHistory()
-         @navigate
+         @navigate( @rootRoute, trigger : true ) unless @getCurrentRoute()
 
+      # calls the core backbone's navigate function
       navigate : ( route, options = {} ) ->
          Backbone.history.navigate route, options
 
+      # returns the current route
       getCurrentRoute : ->
          frag = Backbone.history.fragment
-         if _.isEmpty( frag ) then null else frag
+         if _.isEmpty( frag ) then '' else frag
 
+      # Start the history for the application
       startHistory : ->
          if Backbone.history
             Backbone.history.start()
 
-   # register a controller instance
-      register : ( instance, id ) ->
-         @_registry ?= {}
-         @_registry[id] = instance
-
-
-      unregister : ( instance, id ) ->
-         delete @_registry[id]
-
-      resetRegistry : ->
-         oldCount = @getRegistrySize()
-         for key, controller of @_registry
-            controller.region.close()
-         msg = "There were #{oldCount} controllers in the registry, there are now #{@getRegistrySize()}"
-         if @getRegistrySize() > 0 then console.warn( msg, @_registry ) else console.log( msg )
-
-      getRegistrySize : ->
-         _.size @_registry
-
-   # register a controller instance
-      registerElement : ( instance, id ) ->
-         @_elementRegistry ?= {}
-         @_elementRegistry[id] = instance
-
-   # unregister a controller instance
-      unregisterElement : ( instance, id ) ->
-         delete @_elementRegistry[id]
-
-      resetElementRegistry : ->
-         oldCount = @getElementRegistrySize()
-         for key, controller of @_elementRegistry
-            controller.layout.close()
-         msg = "There were #{oldCount} controllers in the registry, there are now #{@getElementRegistrySize()}"
-         if @getElementRegistrySize() > 0 then console.warn( msg, @_elementRegistry ) else console.log( msg )
-
-      getElementRegistrySize : ->
-         _.size @_elementRegistry
+      # setup the main application regions
+      # @params : regions hash (eg: regions : { regionName : '#regions-element' })
+      _setUpAppRegions : ( regions )->
+         # TODO: validate regions hash
+         @addRegions regions
