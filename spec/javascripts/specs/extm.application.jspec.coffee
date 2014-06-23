@@ -8,7 +8,7 @@ define [ 'marionette', 'src/extm.application' ], ( Marionette, ExtmApplication )
       afterEach ->
          Backbone.history.stop()
          window.location.hash = ''
-         App = {}
+         App = null
 
       describe 'Application start', ->
 
@@ -28,18 +28,18 @@ define [ 'marionette', 'src/extm.application' ], ( Marionette, ExtmApplication )
 
       describe 'when getting the current route', ->
          beforeEach ->
-            #App.start region : '#some-region'
-            #App.navigate 'some-hash'
+            App.start regions : '#some-region'
+            App.navigate 'some-hash'
 
          it 'must return "some-hash" as the current route',->
-            #expect(App.getCurrentRoute() ).toBe 'some-hash'
+            expect(App.getCurrentRoute() ).toBe 'some-hash'
 
-         describe 'when getting the initial route', ->
-            beforeEach ->
-               App.start regions : '#some-region'
+      describe 'when getting the initial route', ->
+         beforeEach ->
+            App.start regions : '#some-region'
 
-            it 'must return "some-hash" as the current route',->
-               expect(App.getCurrentRoute() ).toBe ''
+         it 'must return "some-hash" as the current route',->
+            expect(App.getCurrentRoute() ).toBe ''
 
       describe 'Application navigate', ->
 

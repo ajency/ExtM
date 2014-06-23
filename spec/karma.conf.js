@@ -30,7 +30,7 @@ module.exports = function ( config ) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors : {
-            'src/**/*.js': ['coverage']
+            'src/*.js': ['coverage']
         },
 
         // test results reporter to use
@@ -53,16 +53,11 @@ module.exports = function ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers : ['PhantomJS', 'Chrome'],
+        browsers : ['PhantomJS'],
 
         // disable weird "no timestamp" warning
         client : {
             requireJsShowNoTimestampsError : false
-        },
-
-        coverageReporter: {
-            type : 'html',
-            dir : 'coverage/'
         },
 
         // Continuous Integration mode

@@ -17,6 +17,7 @@ requirejs.config
       jasminejquery : 'bower_components/jasmine-jquery/lib/jasmine-jquery'
       jqueryvalidate : 'bower_components/jquery.validation/dist/jquery.validate'
       plupload : 'bower_components/plupload/js/plupload.full.min'
+      backboneassociations : 'bower_components/backbone-associations/backbone-associations.js'
       jqueryvalidate : 'bower_components/jquery.validation/dist/jquery.validate'
    shim :
       jquery : [ 'underscore' ]
@@ -24,6 +25,7 @@ requirejs.config
       marionette :
          deps : [ 'backbone', 'backbone.wreqr', 'backbone.babysitter' ]
       backbonesyphon : [ 'backbone' ]
+      backboneassociations : [ 'backbone' ]
       jqueryvalidate : [ 'jquery' ]
       bootstrap : [ 'jquery' ]
       jasminejquery : ['jquery']

@@ -32,7 +32,8 @@
     "spinjs": "~2.0.1",
     "jasmine-ajax": "~1.3.1",
     "jasmine-jquery": "~2.0.5",
-    "jquery.validation": "~1.12.0"
+    "jquery.validation": "~1.12.0",
+    "backbone-associations": "~0.6.1"
   },
   "dependencies": {}
 }

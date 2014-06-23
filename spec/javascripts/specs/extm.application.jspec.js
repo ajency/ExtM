@@ -10,7 +10,7 @@ define(['marionette', 'src/extm.application'], function(Marionette, ExtmApplicat
     afterEach(function() {
       Backbone.history.stop();
       window.location.hash = '';
-      return App = {};
+      return App = null;
     });
     describe('Application start', function() {
       describe('when an application is started without regions hash', function() {
@@ -34,17 +34,24 @@ define(['marionette', 'src/extm.application'], function(Marionette, ExtmApplicat
       });
     });
     describe('when getting the current route', function() {
-      beforeEach(function() {});
-      it('must return "some-hash" as the current route', function() {});
-      return describe('when getting the initial route', function() {
-        beforeEach(function() {
-          return App.start({
-            regions: '#some-region'
-          });
+      beforeEach(function() {
+        App.start({
+          regions: '#some-region'
         });
-        return it('must return "some-hash" as the current route', function() {
-          return expect(App.getCurrentRoute()).toBe('');
+        return App.navigate('some-hash');
+      });
+      return it('must return "some-hash" as the current route', function() {
+        return expect(App.getCurrentRoute()).toBe('some-hash');
+      });
+    });
+    describe('when getting the initial route', function() {
+      beforeEach(function() {
+        return App.start({
+          regions: '#some-region'
         });
+      });
+      return it('must return "some-hash" as the current route', function() {
+        return expect(App.getCurrentRoute()).toBe('');
       });
     });
     return describe('Application navigate', function() {
