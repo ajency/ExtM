@@ -2,44 +2,59 @@
 var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-define(['src/extm.namespace', 'marionette', 'backbone', 'underscore'], function(Extm, Marionette, Backbone, _) {
-  return Extm.Application = (function(_super) {
-    __extends(Application, _super);
+define(['marionette', 'backbone', 'underscore'], function(Marionette, Backbone, _) {
+  var ExtmApplication;
+  return ExtmApplication = (function(_super) {
+    __extends(ExtmApplication, _super);
 
-    function Application() {
-      return Application.__super__.constructor.apply(this, arguments);
+    function ExtmApplication() {
+      return ExtmApplication.__super__.constructor.apply(this, arguments);
     }
 
-    Application.prototype.start = function(options) {
-      var regions;
+    ExtmApplication.prototype.histroyStarted = false;
+
+    ExtmApplication.prototype.defaultRoute = '';
+
+    ExtmApplication.prototype.start = function(options) {
       if (options == null) {
         options = {};
       }
-      Application.__super__.start.call(this, options);
+      ExtmApplication.__super__.start.call(this, options);
       if (!options.regions) {
-        throw new Error;
+        throw new Error('application regions not specified');
       }
-      regions = options.regions, this.rootRoute = options.rootRoute;
-      if (_.isUndefined(this.rootRoute)) {
-        this.rootRoute = '';
-      }
-      this._setUpAppRegions(regions);
-      this.startHistory();
-      if (!this.getCurrentRoute()) {
-        return this.navigate(this.rootRoute, {
-          trigger: true
-        });
+      this._setUpRegions(options.regions);
+      return this.startHistory();
+    };
+
+    ExtmApplication.prototype._setUpRegions = function(regions) {
+      return this.addRegions(regions);
+    };
+
+    ExtmApplication.prototype.startHistory = function() {
+      if (!this.histroyStarted) {
+        Backbone.history.start();
+        if (this.getCurrentRoute() === '') {
+          this.navigate(this.defaultRoute, {
+            trigger: true
+          });
+        }
+        return this.histroyStarted = true;
       }
     };
 
-    Application.prototype.navigate = function(route, options) {
-      if (options == null) {
-        options = {};
-      }
+    ExtmApplication.prototype.navigate = function(route, options) {
       return Backbone.history.navigate(route, options);
     };
 
-    Application.prototype.getCurrentRoute = function() {
+    ExtmApplication.prototype.setDefaultRoute = function(route) {
+      if (route == null) {
+        route = '';
+      }
+      return this.defaultRoute = route;
+    };
+
+    ExtmApplication.prototype.getCurrentRoute = function() {
       var frag;
       frag = Backbone.history.fragment;
       if (_.isEmpty(frag)) {
@@ -49,17 +64,7 @@ define(['src/extm.namespace', 'marionette', 'backbone', 'underscore'], function(
       }
     };
 
-    Application.prototype.startHistory = function() {
-      if (Backbone.history) {
-        return Backbone.history.start();
-      }
-    };
-
-    Application.prototype._setUpAppRegions = function(regions) {
-      return this.addRegions(regions);
-    };
-
-    return Application;
+    return ExtmApplication;
 
   })(Marionette.Application);
 });

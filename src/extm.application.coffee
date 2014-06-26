@@ -1,42 +1,62 @@
 ##
 ## Set backbone overrites or mixins
 ##
-define ['src/extm.namespace', 'marionette', 'backbone', 'underscore' ], (Extm, Marionette, Backbone, _ )->
+define [ 'marionette', 'backbone', 'underscore' ], ( Marionette, Backbone, _ )->
 
-   # Extends the Marionette.Application to add some additional functions
-   class Extm.Application extends Marionette.Application
+   # Extends the Marionette.Application to add some additional functionality
+   # extended start function which does something more then default start
+   class ExtmApplication extends Marionette.Application
 
+      # extra property of application to track if history is started or not
+      histroyStarted : false
+
+      # default route of the application.
+      # this is used by initial navigate function to run first route
+      # @see: ExtmApplication.setDefaultRoute(route)
+      defaultRoute : ''
+
+      # @override: start method of marionette add some extra functionality
+      # @params : Object
+      #     { regions : { regionName : '#element' }}
+      # Throws if regions hash is missing
       start : ( options = {} ) ->
-         # let the default behavior continue
+
+         # continue to have the default start behavior
+         # calling start of Marionette.Application
          super options
 
+         # cannot start the app without any application regions
+         # check for regions hash in options and throws error if not found
          if not options.regions
-            throw new Error
+            throw new Error 'application regions not specified'
 
-         { regions, @rootRoute } = options
+         @_setUpRegions options.regions
 
-         @rootRoute = '' if  _.isUndefined @rootRoute
-
-         @_setUpAppRegions regions
+         # finally start the history.
          @startHistory()
-         @navigate( @rootRoute, trigger : true ) unless @getCurrentRoute()
 
-      # calls the core backbone's navigate function
-      navigate : ( route, options = {} ) ->
+      # setup the application regions
+      _setUpRegions : ( regions )->
+         # TODO: validate regions hash
+         @addRegions regions
+
+      # starts backbone.history
+      startHistory : ->
+         if not @histroyStarted
+            Backbone.history.start()
+            @navigate( @defaultRoute, { trigger : true } ) if @getCurrentRoute() is ''
+            @histroyStarted = true
+
+      # @uses Backbone.navigate to change current route and trigger if passed
+      # @params:
+      #   options = { trigger : true} || any options possible in backbone.history.navigate
+      navigate : ( route, options )->
          Backbone.history.navigate route, options
 
-      # returns the current route
+      setDefaultRoute : ( route = '' )->
+         @defaultRoute = route
+
+      # uses backbone to get the current route
       getCurrentRoute : ->
          frag = Backbone.history.fragment
          if _.isEmpty( frag ) then '' else frag
-
-      # Start the history for the application
-      startHistory : ->
-         if Backbone.history
-            Backbone.history.start()
-
-      # setup the main application regions
-      # @params : regions hash (eg: regions : { regionName : '#regions-element' })
-      _setUpAppRegions : ( regions )->
-         # TODO: validate regions hash
-         @addRegions regions

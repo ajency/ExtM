@@ -17,11 +17,14 @@ requirejs.config({
     jasminejquery: 'bower_components/jasmine-jquery/lib/jasmine-jquery',
     jqueryvalidate: 'bower_components/jquery.validation/dist/jquery.validate',
     plupload: 'bower_components/plupload/js/plupload.full.min',
-    backboneassociations: 'bower_components/backbone-associations/backbone-associations.js',
+    backboneassociations: 'bower_components/backbone-associations/backbone-associations',
+    bootstraptour: 'bower_components/bootstrap-tour/build/js/bootstrap-tour.js',
+    underscorestring: 'bower_components/underscore.string/lib/underscore.string',
     jqueryvalidate: 'bower_components/jquery.validation/dist/jquery.validate'
   },
   shim: {
     jquery: ['underscore'],
+    underscorestring: ['underscore'],
     backbone: ['jquery', 'underscore'],
     marionette: {
       deps: ['backbone', 'backbone.wreqr', 'backbone.babysitter']
@@ -30,6 +33,7 @@ requirejs.config({
     backboneassociations: ['backbone'],
     jqueryvalidate: ['jquery'],
     bootstrap: ['jquery'],
+    bootstraptour: ['bootstrap'],
     jasminejquery: ['jquery'],
     jasmineajax: ['jquery'],
     plupload: {
