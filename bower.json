@@ -35,7 +35,10 @@
     "jquery.validation": "~1.12.0",
     "backbone-associations": "~0.6.1",
     "underscore.string": "~2.3.3",
-    "bootstrap-tour": "~0.9.3"
+    "bootstrap-tour": "~0.9.3",
+    "requirejs": "~2.1.14",
+    "almond": "~0.2.9",
+    "jqueryui": "~1.10.4"
   },
   "dependencies": {}
 }
