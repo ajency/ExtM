@@ -1,7 +1,7 @@
 define ['../../src/extm.application'], (Application)->
 
-   Application.onStart = ->
 
+   Application.onStart = ->
 
    Application.setDefaultRoute '//home'
 

@@ -1,6 +1,6 @@
 define [ 'src/extm.marionette.renderer', 'marionette' ], ( Renderer, Marionette ) ->
 
-   describe 'marionette renderer', ->
+   describe 'Marionette.Renderer', ->
 
       describe 'when given a template', ->
 

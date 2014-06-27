@@ -1,44 +1,37 @@
 define [ 'marionette', 'src/extm.application' ], ( Marionette, ExtmApplication )->
 
-   describe 'Extended marionette application', ->
+   describe 'ExtmAplication', ->
       it 'must be defined', ->
          expect( ExtmApplication ).toBeDefined()
          expect( ExtmApplication ).toEqual jasmine.any Function
-
-   describe 'can have a default route', ->
 
       it 'must have default route to be ""', ->
          App = new ExtmApplication
          expect( App.defaultRoute ).toBe ''
 
-         App.setDefaultRoute 'some-hash'
-         expect( App.defaultRoute ).toBe 'some-hash'
-
-   describe 'when app starts', ->
-      afterEach ->
-         Backbone.history.stop()
-
-      describe 'when app starts without region hash', ->
-         App = ''
-         beforeEach ->
-            spyOn( ExtmApplication::, 'start' ).and.callThrough()
+      describe 'when have a default route equal to "some-route"', ->
+         it 'must have default route to be "some-route"', ->
             App = new ExtmApplication
+            App.setDefaultRoute 'some-route'
+            expect( App.defaultRoute ).toBe 'some-route'
 
+      describe 'when app starts without adding any regions', ->
          afterEach ->
-            App = {}
+            Backbone.history.stop()
 
+         app = new ExtmApplication
          it 'must throw an error', ->
-            expect(-> App.start() ).toThrow()
+            expect(->
+               app.start() ).toThrow()
 
       describe 'when app starts with region hash', ->
          App = ''
-         onStart = null
          beforeEach ->
             App = new ExtmApplication
             App.onStart = ->
-            onStart = spyOn( App, 'onStart' )
-            App.start regions :
-               regionName : '#region'
+            spyOn( App, 'onStart' )
+            App.addRegions (regionName : '#region-element')
+            App.start()
 
          afterEach ->
             Backbone.history.stop()
@@ -47,8 +40,8 @@ define [ 'marionette', 'src/extm.application' ], ( Marionette, ExtmApplication )
          it 'must set the app region', ->
             expect( App.getRegion( 'regionName' ) instanceof Marionette.Region ).toBeTruthy()
 
-         it 'must run onStart function', ->
-            expect( onStart ).toHaveBeenCalled()
+         it 'must still have default functionality of Marionette.Application', ->
+            expect( App.onStart ).toHaveBeenCalled()
 
          it 'must start the backbone history', ->
             expect( App.histroyStarted ).toBeTruthy()
@@ -58,34 +51,33 @@ define [ 'marionette', 'src/extm.application' ], ( Marionette, ExtmApplication )
          beforeEach ->
             window.location.hash = ''
             App = new ExtmApplication
+            App.addRegions (regionName : '#region-element')
 
          afterEach ->
-            window.location.hash = ''
+            Backbone.history.stop()
             App = {}
 
          it 'must navigate to "" route', ->
-            App.start regions :
-                           name : '#hash'
+            App.start()
             expect( App.getCurrentRoute() ).toBe ''
 
          it 'must navigate to default route', ->
             App.setDefaultRoute 'new-route'
-            App.start regions :
-                           name : '#hash'
+            App.start()
             expect( App.getCurrentRoute() ).toBe 'new-route'
 
       describe 'when current route not empty', ->
-         App = {}
+         app = {}
          beforeEach ->
             window.location.hash = '#/some-hash'
-            App = new ExtmApplication
-            App.start regions :
-                        name : '#hash'
+            app = new ExtmApplication
+            app.addRegions (regionName : '#region-element')
+            app.start()
 
          afterEach ->
             Backbone.history.stop()
             window.location.hash = ''
-            App = {}
+            app = {}
 
          it 'must navigate to default route', ->
-            expect( App.getCurrentRoute() ).toBe 'some-hash'
+            expect( app.getCurrentRoute() ).toBe 'some-hash'
