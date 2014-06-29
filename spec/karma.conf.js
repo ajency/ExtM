@@ -1,8 +1,7 @@
 // Karma configuration
-// Generated on Sun Jun 15 2014 10:34:36 GMT+0530 (IST)
+// Generated on Sun Jun 29 2014 13:21:11 GMT+0530 (IST)
 
 module.exports = function ( config ) {
-
     config.set( {
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,16 +9,18 @@ module.exports = function ( config ) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks : ['jasmine', 'requirejs'],
+        frameworks : ['jasmine'],
 
         // list of files / patterns to load in the browser
         files : [
-            'src/require.config.js',
-            'spec/javascripts/helpers/spechelper.js',
-            'spec/test-main.js',
-            { pattern : 'bower_components/**/*.js', included : false },
-            { pattern : 'src/**/*.js', included : false },
-            { pattern : 'spec/javascripts/specs/**/*.js', included : false }
+            'bower_components/underscore/underscore.js',
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/backbone/backbone.js',
+            'bower_components/marionette/lib/backbone.marionette.js',
+            'bower_components/mustache/mustache.js',
+            'tmp/extm.core.js',
+            'spec/javascripts/helpers/*.js',
+            'spec/javascripts/specs/**/*.js'
         ],
 
         // list of files to exclude
@@ -30,13 +31,13 @@ module.exports = function ( config ) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors : {
-            'src/*.js': ['coverage']
+
         },
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters : ['progress', 'coverage'],
+        reporters : ['progress'],
 
         // web server port
         port : 9876,
@@ -53,12 +54,7 @@ module.exports = function ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers : ['PhantomJS'],
-
-        // disable weird "no timestamp" warning
-        client : {
-            requireJsShowNoTimestampsError : false
-        },
+        browsers : ['PhantomJS', 'Chrome'],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

@@ -39,6 +39,8 @@
         "package.json"
     ],
     "devDependencies" : {
+    },
+    "dependencies" : {
         "marionette" : "~2.0.0",
         "plupload" : "~2.1.2",
         "mustache" : "~0.8.2",
@@ -52,6 +54,5 @@
         "requirejs" : "~2.1.14",
         "almond" : "~0.2.9",
         "jqueryui" : "~1.10.4"
-    },
-    "dependencies" : {}
+    }
 }
