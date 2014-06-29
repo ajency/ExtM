@@ -1,11 +1,22 @@
-define ['../../src/extm.application'], (Application)->
+define 'plugin-loader', [ '' ], ->
+
+define 'apps-loader', [ '' ], ->
+
+define 'extm', [ 'src/extm.namespace' ], ( Extm )->
+   Extm
+
+define [ 'plugin-loader', 'apps-loader', 'extm' ], ( plugins, apps, Extm )->
+
+   #
+   App = new Extm.Application
+
+   App.addRegions
+      headerRegion : '#header-region'
+      leftNavRegion : '#left-nav-region'
+
+   App.onStart = ->
 
 
-   Application.onStart = ->
+   App.setDefaultRoute '#/home'
 
-   Application.setDefaultRoute '//home'
-
-   Application.start
-               regions :
-                  headerRegion : '#header-region'
-                  leftNavRegion : '#left-nav-region'
+   App.start()

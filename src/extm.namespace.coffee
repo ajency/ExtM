@@ -6,6 +6,11 @@ define [
    'src/extm.marionette.renderer'
 ], ( ExtmApplication )->
 
-   window.App = new ExtmApplication
+   Extm = {}
+
+   # attach all Objects
+   Extm.Application = ExtmApplication
+
+   Extm
 
 
