@@ -12,10 +12,13 @@
         return module.exports = factory( underscore, backbone, wreqr, babysitter );
 
     } else if (typeof define === "function" && define.amd) {
-        return define( ["underscore", "backbone", "marionette"], factory );
+        return define( ["underscore",
+                        "backbone",
+                        "marionette",
+                        "mustache"], factory );
     }
 
-})( this, function ( _, Backbone, Marionette ) {
+})( this, function ( _, Backbone, Marionette, Mustache ) {
 
     //@include extm.core.js
 

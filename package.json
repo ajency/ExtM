@@ -51,6 +51,7 @@
     "install": "~0.1.7",
     "karma-coverage": "~0.2.4",
     "grunt-preprocessor": "~0.4.0",
-    "grunt-preprocess": "~4.0.0"
+    "grunt-preprocess": "~4.0.0",
+    "grunt-contrib-watch": "~0.6.1"
   }
 }

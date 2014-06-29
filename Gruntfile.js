@@ -57,6 +57,12 @@ module.exports = function(grunt) {
         src: 'src/build/extm.amd.js',
         dest: 'lib/extm.amd.js'
       }
+    },
+    watch: {
+      extmtestbuild: {
+        files: ['src/**/*.coffee'],
+        tasks: ['preprocess:test_file']
+      }
     }
   });
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);

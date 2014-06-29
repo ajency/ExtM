@@ -30,7 +30,7 @@ class Extm.Application extends Marionette.Application
 
    # setup the application regions
    _setUpRegions : ( regions )->
-      # TODO: validate regions hash
+      # TODO: validate regions hash to
       @addRegions regions
 
    # starts backbone.history

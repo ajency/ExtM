@@ -36,7 +36,9 @@
         "_SpecRunner.html",
         "Gruntfile.*",
         "coffeelint.json",
-        "package.json"
+        "package.json",
+        "LICENSE",
+        "README.md"
     ],
     "devDependencies" : {
     },
