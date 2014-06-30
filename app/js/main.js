@@ -3,7 +3,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 require(['extm'], function(Extm) {
-  var V;
+  var Rv, V;
   window.App = new Extm.Application;
   App.addRegions({
     headerRegion: '#header-region'
@@ -20,6 +20,22 @@ require(['extm'], function(Extm) {
     return V;
 
   })(Marionette.ItemView);
+  Rv = (function(_super) {
+    __extends(Rv, _super);
+
+    function Rv() {
+      return Rv.__super__.constructor.apply(this, arguments);
+    }
+
+    Rv.prototype.initialize = function(options) {
+      return this.show(new V);
+    };
+
+    return Rv;
+
+  })(Extm.RegionController);
   App.start();
-  return App.getRegion('headerRegion').show(new V);
+  return new Rv({
+    region: App.headerRegion
+  });
 });
