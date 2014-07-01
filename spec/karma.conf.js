@@ -18,9 +18,11 @@ module.exports = function ( config ) {
             'bower_components/backbone/backbone.js',
             'bower_components/marionette/lib/backbone.marionette.js',
             'bower_components/mustache/mustache.js',
+            'bower_components/jasmine-ajax/lib/mock-ajax.js',
+            'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
             'tmp/extm.core.js',
             'spec/javascripts/helpers/*.js',
-            'spec/javascripts/specs/**/*.js'
+            'spec/javascripts/**/*.jspec.js'
         ],
 
         // list of files to exclude
@@ -54,7 +56,7 @@ module.exports = function ( config ) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers : ['PhantomJS', 'Chrome'],
+        browsers : ['PhantomJS'],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

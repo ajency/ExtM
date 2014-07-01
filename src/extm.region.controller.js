@@ -6,51 +6,40 @@ var __hasProp = {}.hasOwnProperty,
 Extm.RegionController = (function(_super) {
   __extends(RegionController, _super);
 
+  RegionController.prototype.region = false;
+
+  RegionController.prototype.currentView = false;
+
   function RegionController(options) {
     if (options == null) {
       options = {};
     }
-    this.region = options.region || msgbus.reqres.request("default:region");
-    this._instance_id = _.uniqueId("controller");
-    msgbus.commands.execute("register:instance", this, this._instance_id);
     RegionController.__super__.constructor.call(this, options);
+    if (!options.region) {
+      throw new Error('Region is not specified for the controller');
+    }
+    this._assignRegion(options.region);
+    this.instanceId = _.uniqueId('region-controller-');
+    msgbus.commands.execute('register:controller', this.instanceId, this);
   }
+
+  RegionController.prototype._assignRegion = function(region) {
+    return this.region = region;
+  };
 
   RegionController.prototype.destroy = function() {
     var args;
     args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
     delete this.region;
+    delete this.currentView;
     delete this.options;
-    msgbus.commands.execute("unregister:instance", this, this._instance_id);
+    msgbus.commands.execute("unregister:controller", this.instanceId, this);
     return RegionController.__super__.destroy.call(this, args);
   };
 
-  RegionController.prototype.show = function(view, options) {
-    if (options == null) {
-      options = {};
-    }
-    _.defaults(options, {
-      loading: false,
-      region: this.region
-    });
-    this._setMainView(view);
-    return this._manageView(view, options);
-  };
-
-  RegionController.prototype._setMainView = function(view) {
-    if (this._mainView) {
-      return;
-    }
-    this._mainView = view;
-    return this.listenTo(view, "close", this.close);
-  };
-
-  RegionController.prototype._manageView = function(view, options) {
-    if (options.loading) {
-      return msgbus.commands.execute("show:loading", view, options);
-    } else {
-      return options.region.show(view);
-    }
+  RegionController.prototype.show = function(view) {
+    this.currentView = view;
+    return this.region.show(view);
   };
 
   return RegionController;

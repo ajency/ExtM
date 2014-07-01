@@ -1,36 +1,37 @@
 class Extm.RegionController extends Marionette.Controller
 
+   # holds the region this controller is controlling.
+   # Must be an object of Marionette.Region or its subclass
+   region : false
+
+   # current View this region will show.
+   # one region can show only one view
+   currentView : false
+
+   # contruct the controller
    constructor : ( options = {} ) ->
-      @region = options.region or msgbus.reqres.request "default:region"
-      @_instance_id = _.uniqueId( "controller" )
-      msgbus.commands.execute "register:instance", @, @_instance_id
+
+      # continue with super controller constructor
       super options
 
+      if not options.region
+         throw new Error 'Region is not specified for the controller'
+
+      @_assignRegion options.region
+      @instanceId = _.uniqueId 'region-controller-'
+
+      msgbus.commands.execute 'register:controller', @instanceId, @
+
+   _assignRegion : ( region )->
+      @region = region
 
    destroy : ( args... ) ->
       delete @region
+      delete @currentView
       delete @options
-      msgbus.commands.execute "unregister:instance", @, @_instance_id
+      msgbus.commands.execute "unregister:controller", @instanceId, @
       super args
 
-
-   show : ( view, options = {} ) ->
-      _.defaults options,
-               loading : false
-               region : @region
-
-      @_setMainView view
-      @_manageView view, options
-
-
-   _setMainView : ( view ) ->
-      return if @_mainView
-      @_mainView = view
-      @listenTo view, "close", @close
-
-
-   _manageView : ( view, options ) ->
-      if options.loading
-         msgbus.commands.execute "show:loading", view, options
-      else
-         options.region.show view
+   show : ( view ) ->
+      @currentView = view
+      @region.show view
