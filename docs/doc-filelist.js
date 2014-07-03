@@ -1,1 +1,1 @@
-var tree={"dirs":{"src":{"files":["extm.application.coffee","extm.namespace.coffee","require.config.coffee"]}}};
+var tree={"dirs":{"src":{"files":["extm.application.coffee","extm.marionette.renderer.coffee","extm.msgbus.coffee","extm.region.controller.coffee"]}}};

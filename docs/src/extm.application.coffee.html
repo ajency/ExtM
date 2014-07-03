@@ -18,8 +18,8 @@
     </div>
     <div id="tree"></div>
     <div id="headings">
-      <div class="heading h1">
-        <a href="#set%20backbone%20overrites%20or%20mixins">Set backbone overrites or mixins</a>
+      <div class="heading h6">
+        <a href="#%23%23%23%23%23%20extm.application%20class">##### EXTM.APPLICATION class</a>
       </div>
     </div>
   </div>
@@ -28,20 +28,22 @@
 <table cellpadding="0" cellspacing="0">
   <tbody>
       <tr>
-        <td class="docs"><p>#</p>
-
-
-<div class="pilwrap" id="set%20backbone%20overrites%20or%20mixins">
-  <h1>
-    <a href="#set%20backbone%20overrites%20or%20mixins" name="set%20backbone%20overrites%20or%20mixins" class="pilcrow">&#182;</a>
-    Set backbone overrites or mixins
-  </h1>
+        <td class="docs">
+          <h1>extm.application.coffee</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap" id="%23%23%23%23%23%20extm.application%20class">
+  <h6>
+    <a href="#%23%23%23%23%23%20extm.application%20class" name="%23%23%23%23%23%20extm.application%20class" class="pilcrow">&#182;</a>
+    ##### EXTM.APPLICATION class
+  </h6>
 </div>
 
-
-<p>#</p>
         </td>
-        <td class="code highlight"><div class="highlight"><pre><span class="nx">define</span> <span class="p">[</span><span class="s">&#39;src/extm.namespace&#39;</span><span class="p">,</span> <span class="s">&#39;marionette&#39;</span><span class="p">,</span> <span class="s">&#39;backbone&#39;</span><span class="p">,</span> <span class="s">&#39;underscore&#39;</span> <span class="p">],</span> <span class="nf">(Extm, Marionette, Backbone, _ )-&gt;</span>
+        <td class="code highlight"><div class="highlight"><pre><span class="k">class</span> <span class="nx">Extm</span><span class="p">.</span><span class="nx">Application</span> <span class="k">extends</span> <span class="nx">Marionette</span><span class="p">.</span><span class="nx">Application</span>
 
 
 </pre></div>
@@ -52,12 +54,11 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-2" id="section-2">&#182;</a>
 </div>
-<p>Extends the Marionette.Application to add some additional functions</p>
+<p>extra property of application to track if history is started or not</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-   <span class="k">class</span> <span class="nx">Extm</span><span class="p">.</span><span class="nx">Application</span> <span class="k">extends</span> <span class="nx">Marionette</span><span class="p">.</span><span class="nx">Application</span>
+   <span class="nv">histroyStarted : </span><span class="kc">false</span>
 
-      <span class="nv">start : </span><span class="nf">( options = {} ) -&gt;</span>
 
 </pre></div>
         </td>
@@ -67,21 +68,12 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-3" id="section-3">&#182;</a>
 </div>
-<p>let the default behavior continue</p>
+<p>default route of the application.
+this is used by initial navigate function to run first route
+@see: ExtmApplication.setDefaultRoute(route)</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-         <span class="k">super</span> <span class="nx">options</span>
-
-         <span class="k">if</span> <span class="o">not</span> <span class="nx">options</span><span class="p">.</span><span class="nx">regions</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span>
-
-         <span class="p">{</span> <span class="nx">regions</span><span class="p">,</span> <span class="nx">@rootRoute</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">options</span>
-
-         <span class="vi">@rootRoute = </span><span class="s">&#39;&#39;</span> <span class="k">if</span>  <span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span> <span class="nx">@rootRoute</span>
-
-         <span class="nx">@_setUpAppRegions</span> <span class="nx">regions</span>
-         <span class="nx">@startHistory</span><span class="p">()</span>
-         <span class="nx">@navigate</span><span class="p">(</span> <span class="nx">@rootRoute</span><span class="p">,</span> <span class="nv">trigger : </span><span class="kc">true</span> <span class="p">)</span> <span class="k">unless</span> <span class="nx">@getCurrentRoute</span><span class="p">()</span>
+   <span class="nv">defaultRoute : </span><span class="s">&#39;&#39;</span>
 
 
 </pre></div>
@@ -92,11 +84,13 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-4" id="section-4">&#182;</a>
 </div>
-<p>calls the core backbone's navigate function</p>
+<p>@override: start method of marionette add some extra functionality
+@params : Object
+    { regions : { regionName : '#element' }}
+Throws if regions hash is missing</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-      <span class="nv">navigate : </span><span class="nf">( route, options = {} ) -&gt;</span>
-         <span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">navigate</span> <span class="nx">route</span><span class="p">,</span> <span class="nx">options</span>
+   <span class="nv">start : </span><span class="nf">( options = {} ) -&gt;</span>
 
 
 </pre></div>
@@ -107,12 +101,12 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-5" id="section-5">&#182;</a>
 </div>
-<p>returns the current route</p>
+<p>cannot start the app without any application regions
+check for regions hash in options and throws error if not found</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-      <span class="nv">getCurrentRoute : </span><span class="nf">-&gt;</span>
-         <span class="nv">frag = </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">fragment</span>
-         <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span> <span class="nx">frag</span> <span class="p">)</span> <span class="k">then</span> <span class="s">&#39;&#39;</span> <span class="k">else</span> <span class="nx">frag</span>
+      <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span> <span class="nx">@getRegions</span><span class="p">()</span> <span class="p">)</span> <span class="o">is</span> <span class="mi">0</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;application regions not specified&#39;</span>
 
 
 </pre></div>
@@ -123,12 +117,11 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-6" id="section-6">&#182;</a>
 </div>
-<p>Start the history for the application</p>
+<p>continue to have the default start behavior
+calling start of Marionette.Application</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-      <span class="nv">startHistory : </span><span class="nf">-&gt;</span>
-         <span class="k">if</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span>
-            <span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+      <span class="k">super</span> <span class="nx">options</span>
 
 
 </pre></div>
@@ -139,11 +132,11 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-7" id="section-7">&#182;</a>
 </div>
-<p>setup the main application regions
-@params : regions hash (eg: regions : { regionName : '#regions-element' })</p>
+<p>finally start the history.</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-      <span class="nv">_setUpAppRegions : </span><span class="nf">( regions )-&gt;</span>
+      <span class="nx">@startHistory</span><span class="p">()</span>
+
 
 </pre></div>
         </td>
@@ -153,10 +146,77 @@
 <div class="pilwrap">
   <a class="pilcrow" href="#section-8" id="section-8">&#182;</a>
 </div>
-<p>TODO: validate regions hash</p>
+<p>setup the application regions</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre>
-         <span class="nx">@addRegions</span> <span class="nx">regions</span>
+   <span class="nv">_setUpRegions : </span><span class="nf">( regions )-&gt;</span>
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-9" id="section-9">&#182;</a>
+</div>
+<p>TODO: validate regions hash to</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+      <span class="nx">@addRegions</span> <span class="nx">regions</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-10" id="section-10">&#182;</a>
+</div>
+<p>starts backbone.history</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+   <span class="nv">startHistory : </span><span class="nf">-&gt;</span>
+      <span class="k">if</span> <span class="o">not</span> <span class="nx">@histroyStarted</span>
+         <span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+         <span class="nx">@navigate</span><span class="p">(</span> <span class="nx">@defaultRoute</span><span class="p">,</span> <span class="nv">trigger : </span><span class="kc">true</span> <span class="p">)</span> <span class="k">if</span> <span class="nx">@getCurrentRoute</span><span class="p">()</span> <span class="o">is</span> <span class="s">&#39;&#39;</span>
+         <span class="vi">@histroyStarted = </span><span class="kc">true</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-11" id="section-11">&#182;</a>
+</div>
+<p>@uses Backbone.navigate to change current route and trigger if passed
+@params:
+  options = { trigger : true} || any options possible in backbone.history.navigate</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+   <span class="nv">navigate : </span><span class="nf">( route, options )-&gt;</span>
+      <span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">navigate</span> <span class="nx">route</span><span class="p">,</span> <span class="nx">options</span>
+
+   <span class="nv">setDefaultRoute : </span><span class="nf">( route = &#39;&#39; )-&gt;</span>
+      <span class="vi">@defaultRoute = </span><span class="nx">route</span>
+
+
+</pre></div>
+        </td>
+      </tr>
+      <tr>
+        <td class="docs">
+<div class="pilwrap">
+  <a class="pilcrow" href="#section-12" id="section-12">&#182;</a>
+</div>
+<p>uses backbone to get the current route</p>
+        </td>
+        <td class="code highlight"><div class="highlight"><pre>
+   <span class="nv">getCurrentRoute : </span><span class="nf">-&gt;</span>
+      <span class="nv">frag = </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">fragment</span>
+      <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span> <span class="nx">frag</span> <span class="p">)</span> <span class="k">then</span> <span class="s">&#39;&#39;</span> <span class="k">else</span> <span class="nx">frag</span>
 </pre></div>
         </td>
       </tr>

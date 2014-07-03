@@ -35,3 +35,4 @@ class Extm.RegionController extends Marionette.Controller
    show : ( view ) ->
       @currentView = view
       @region.show view
+
