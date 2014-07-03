@@ -1,57 +1,61 @@
 {
-  "name": "ExtM",
-  "version": "0.0.1",
-  "description": "Extended Marionette",
-  "main": "lib/core/extm.marionette.js",
-  "scripts": {
-    "test": "karma test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:surajajency/ExtM.git"
-  },
-  "keywords": [
-    "Backbone",
-    "Marionette",
-    "Extended",
-    "marionette",
-    "framework"
-  ],
-  "author": "Team Ajency",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/surajajency/ExtM/issues"
-  },
-  "homepage": "https://github.com/surajajency/ExtM",
-  "dependencies": {
-    "backbone.babysitter": "^0.1.0",
-    "backbone.wreqr": "^1.0.0",
-    "backbone": "1.0.0 - 1.1.2",
-    "underscore": "1.4.4 - 1.6.0"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "matchdep": "~0.1.2",
-    "grunt-karma": "~0.8.3",
-    "grunt-plato": "~0.1.4",
-    "karma-phantomjs-launcher": "~0.1.4",
-    "grunt-contrib-requirejs": "~0.4.4",
-    "grunt-todo": "~0.3.0",
-    "karma-requirejs": "~0.2.2",
-    "grunt-coffeelint": "0.0.10",
-    "grunt-contrib-coffee": "~0.10.1",
-    "time-grunt": "~0.3.1",
-    "grunt-contrib-jshint": "~0.7.2",
-    "grunt-notify": "~0.2.16",
-    "karma": "~0.12.16",
-    "karma-jasmine": "~0.2.2",
-    "karma-chrome-launcher": "~0.1.4",
-    "grunt-docker": "0.0.8",
-    "grunt-lintspaces": "~0.5.1",
-    "install": "~0.1.7",
-    "karma-coverage": "~0.2.4",
-    "grunt-preprocessor": "~0.4.0",
-    "grunt-preprocess": "~4.0.0",
-    "grunt-contrib-watch": "~0.6.1"
-  }
+    "name" : "ExtM",
+    "version" : "0.0.4",
+    "description" : "Extended Marionette",
+    "main" : "lib/core/extm.marionette.js",
+    "scripts" : {
+        "bower" : "bower install",
+        "build" : "grunt preprocess",
+        "test" : "grunt jasmine",
+        "coverage" : "grunt coverage --mocha-reporter=dot"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "git@github.com:surajajency/ExtM.git"
+    },
+    "keywords" : [
+        "Backbone",
+        "Marionette",
+        "Extended",
+        "marionette",
+        "framework"
+    ],
+    "author" : "Team Ajency",
+    "license" : "MIT",
+    "bugs" : {
+        "url" : "https://github.com/surajajency/ExtM/issues"
+    },
+    "homepage" : "https://github.com/surajajency/ExtM",
+    "dependencies" : {
+        "backbone.babysitter" : "^0.1.0",
+        "backbone.wreqr" : "^1.0.0",
+        "backbone" : "1.0.0 - 1.1.2",
+        "underscore" : "1.4.4 - 1.6.0"
+    },
+    "devDependencies" : {
+        "grunt" : "~0.4.5",
+        "matchdep" : "~0.1.2",
+        "grunt-karma" : "~0.8.3",
+        "grunt-plato" : "~0.1.4",
+        "karma-phantomjs-launcher" : "~0.1.4",
+        "grunt-contrib-requirejs" : "~0.4.4",
+        "grunt-todo" : "~0.3.0",
+        "karma-requirejs" : "~0.2.2",
+        "grunt-coffeelint" : "0.0.10",
+        "grunt-contrib-coffee" : "~0.10.1",
+        "time-grunt" : "~0.3.1",
+        "grunt-contrib-jshint" : "~0.7.2",
+        "grunt-notify" : "~0.2.16",
+        "karma" : "~0.12.16",
+        "karma-jasmine" : "~0.2.2",
+        "karma-chrome-launcher" : "~0.1.4",
+        "grunt-docker" : "0.0.8",
+        "grunt-lintspaces" : "~0.5.1",
+        "install" : "~0.1.7",
+        "karma-coverage" : "~0.2.4",
+        "grunt-preprocessor" : "~0.4.0",
+        "grunt-preprocess" : "~4.0.0",
+        "grunt-contrib-watch" : "~0.6.1",
+        "grunt-contrib-jasmine" : "~0.6.5"
+    }
 }
