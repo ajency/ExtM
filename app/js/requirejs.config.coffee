@@ -20,7 +20,6 @@ requirejs.config
       backboneassociations : 'bower_components/backbone-associations/backbone-associations'
       bootstraptour : 'bower_components/bootstrap-tour/build/js/bootstrap-tour.js'
       underscorestring : 'bower_components/underscore.string/lib/underscore.string'
-      jqueryvalidate : 'bower_components/jquery.validation/dist/jquery.validate'
       extm : 'lib/extm.amd'
    shim :
       jquery : [ 'underscore' ]

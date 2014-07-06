@@ -15,7 +15,9 @@
         return define( ["underscore",
                         "backbone",
                         "marionette",
-                        "mustache"], factory );
+                        "mustache",
+                        "jqueryvalidate",
+                        "backboneassociations"], factory );
     }
 
 })( this, function ( _, Backbone, Marionette, Mustache ) {
