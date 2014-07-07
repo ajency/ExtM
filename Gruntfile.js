@@ -67,7 +67,7 @@ module.exports = function(grunt) {
     },
     jasmine: {
       EXTM: {
-        src: ['bower_components/underscore/underscore.js', 'bower_components/jquery/dist/jquery.js', 'bower_components/backbone/backbone.js', 'bower_components/marionette/lib/backbone.marionette.js', 'bower_components/mustache/mustache.js', 'bower_components/jasmine-ajax/lib/mock-ajax.js', 'bower_components/jasmine-jquery/lib/jasmine-jquery.js', 'tmp/extm.core.js'],
+        src: ['bower_components/underscore/underscore.js', 'bower_components/jquery/dist/jquery.js', 'bower_components/backbone/backbone.js', 'bower_components/marionette/lib/backbone.marionette.js', 'bower_components/mustache/mustache.js', 'bower_components/jquery.validation/dist/jquery.validate.js', 'bower_components/backbone-associations/backbone-associations.js', 'bower_components/jasmine-ajax/lib/mock-ajax.js', 'bower_components/jasmine-jquery/lib/jasmine-jquery.js', 'tmp/extm.core.js'],
         options: {
           specs: 'spec/javascripts/**/*jspec.js',
           helpers: 'spec/javascripts/helpers/*.js'
