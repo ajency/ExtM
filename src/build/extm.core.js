@@ -8,6 +8,9 @@ Extm = (function ( global, Backbone, _ , Marionette, Mustache) {
     Extm = {};
     Extm.$ = Backbone.$;
 
+    //@include ../extm.controllers.js
+
+    //@include ../extm.applauncher.js
     //@include ../extm.msgbus.js
 
     //@include ../extm.wp.model.js

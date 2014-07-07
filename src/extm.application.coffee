@@ -2,6 +2,8 @@
 
 class Extm.Application extends Marionette.Application
 
+   _staticApps : []
+
    # extra property of application to track if history is started or not
    histroyStarted : false
 
@@ -39,6 +41,7 @@ class Extm.Application extends Marionette.Application
          Backbone.history.start()
          @navigate( @defaultRoute, trigger : true ) if @getCurrentRoute() is ''
          @histroyStarted = true
+         @_startStaticApps() if @_hasStaticApps()
 
    # @uses Backbone.navigate to change current route and trigger if passed
    # @params:
@@ -53,3 +56,15 @@ class Extm.Application extends Marionette.Application
    getCurrentRoute : ->
       frag = Backbone.history.fragment
       if _.isEmpty( frag ) then '' else frag
+
+   addStaticApps : ( apps )->
+      @_staticApps = apps
+
+   _hasStaticApps : ->
+      _.size( @_staticApps ) > 0
+
+   _startStaticApps : ->
+      _.each @_staticApps, ( app, index )->
+         msgbus.showApp app[0]
+               .insideRegion app[1]
+               .withOptions()

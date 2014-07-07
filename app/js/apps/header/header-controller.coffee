@@ -8,6 +8,10 @@ define [ 'extm', 'app/js/apps/header/header-view' ], ( Extm, HeaderView )->
 
          @region.show new HeaderView
 
+   msgbus.registerController 'header', HeaderController
+
+   HeaderController
+
 
 
 

@@ -9,6 +9,8 @@ Extm.Application = (function(_super) {
     return Application.__super__.constructor.apply(this, arguments);
   }
 
+  Application.prototype._staticApps = [];
+
   Application.prototype.histroyStarted = false;
 
   Application.prototype.defaultRoute = '';
@@ -36,7 +38,10 @@ Extm.Application = (function(_super) {
           trigger: true
         });
       }
-      return this.histroyStarted = true;
+      this.histroyStarted = true;
+      if (this._hasStaticApps()) {
+        return this._startStaticApps();
+      }
     }
   };
 
@@ -59,6 +64,20 @@ Extm.Application = (function(_super) {
     } else {
       return frag;
     }
+  };
+
+  Application.prototype.addStaticApps = function(apps) {
+    return this._staticApps = apps;
+  };
+
+  Application.prototype._hasStaticApps = function() {
+    return _.size(this._staticApps) > 0;
+  };
+
+  Application.prototype._startStaticApps = function() {
+    return _.each(this._staticApps, function(app, index) {
+      return msgbus.showApp(app[0]).insideRegion(app[1]).withOptions();
+    });
   };
 
   return Application;

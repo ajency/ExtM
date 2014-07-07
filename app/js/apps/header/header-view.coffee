@@ -1,5 +1,5 @@
 define [ 'extm', 'marionette' ], ( Extm, Marionette )->
 
-   class HeaderView extends Marionette.ItemView
+   class HeaderView extends Extm.FormView
 
-      template : '<div>Header template</div>'
+      template : '<div>Header template.</div>'

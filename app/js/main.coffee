@@ -1,24 +1,16 @@
-
 # set all plugins for this page here
-require [ 'extm' ], ( Extm )->
+
+define 'apps-loader', [ 'app/js/apps/header/header-controller' ], ->
+
+require [ 'extm', 'apps-loader' ], ( Extm )->
 
    window.App = new Extm.Application
 
    App.addRegions
       headerRegion : '#header-region'
 
-
-   class V extends Marionette.ItemView
-      template : 'hello world'
-
-   class Rv extends Extm.RegionController
-
-      initialize : (options)->
-
-         @show new V
+   App.addStaticApps [
+      [ 'header', App.headerRegion ]
+   ]
 
    App.start()
-
-   new Rv
-      region : App.headerRegion
-

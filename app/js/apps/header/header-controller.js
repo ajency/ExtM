@@ -4,7 +4,7 @@ var __hasProp = {}.hasOwnProperty,
 
 define(['extm', 'app/js/apps/header/header-view'], function(Extm, HeaderView) {
   var HeaderController;
-  return HeaderController = (function(_super) {
+  HeaderController = (function(_super) {
     __extends(HeaderController, _super);
 
     function HeaderController() {
@@ -19,4 +19,6 @@ define(['extm', 'app/js/apps/header/header-view'], function(Extm, HeaderView) {
     return HeaderController;
 
   })(Extm.RegionController);
+  msgbus.registerController('header', HeaderController);
+  return HeaderController;
 });

@@ -11,9 +11,9 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
       return HeaderView.__super__.constructor.apply(this, arguments);
     }
 
-    HeaderView.prototype.template = '<div>Header template</div>';
+    HeaderView.prototype.template = '<div>Header template.</div>';
 
     return HeaderView;
 
-  })(Marionette.ItemView);
+  })(Extm.FormView);
 });
