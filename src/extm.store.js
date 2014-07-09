@@ -16,17 +16,21 @@ Extm.Store = (function() {
     if (_.isNull(args)) {
       this.models[name].url = "" + AJAXURL;
       return $.Deferred(function(deferred) {
-        return _models[name].fetch({
-          data: {
-            action: "fetch-" + name + "s"
-          },
-          success: function(collection) {
-            return deferred.resolve(collection);
-          },
-          error: function(error) {
-            return deferred.reject(error);
-          }
-        });
+        if (_models[name].length === 0) {
+          return _models[name].fetch({
+            data: {
+              action: "fetch-" + name + "s"
+            },
+            success: function(collection) {
+              return deferred.resolve(collection);
+            },
+            error: function(error) {
+              return deferred.reject(error);
+            }
+          });
+        } else {
+          return deferred.resolve(_models[name]);
+        }
       }).promise();
     }
     if (_.isNumber(args)) {

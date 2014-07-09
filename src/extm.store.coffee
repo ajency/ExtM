@@ -9,16 +9,21 @@ class Extm.Store
       if _.isUndefined @models[name]
          @models[name] = new Backbone.Collection
 
-      if _.isNull args
+      if _.isNull( args )
          @models[name].url = "#{AJAXURL}"
          return $.Deferred ( deferred )->
-            _models[name].fetch
-               data :
-                  action : "fetch-#{name}s"
-               success : ( collection )->
-                  deferred.resolve collection
-               error : (error)->
-                  deferred.reject error
+
+            if _models[name].length is 0
+               _models[name].fetch
+                  data :
+                     action : "fetch-#{name}s"
+                  success : ( collection )->
+                     deferred.resolve collection
+                  error : (error)->
+                     deferred.reject error
+            else
+               deferred.resolve _models[name]
+
          .promise()
 
       if _.isNumber args

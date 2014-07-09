@@ -15,7 +15,7 @@ define(['extm', 'app/js/apps/left-nav/left-nav-view'], function(Extm, LeftNavVie
       var view;
       view = options.view;
       this.store().find('view', view);
-      this.store().find('unitw');
+      this.store().find('unit');
       return this.wait();
     };
 

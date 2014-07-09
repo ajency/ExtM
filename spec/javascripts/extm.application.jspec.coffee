@@ -79,3 +79,38 @@ describe 'ExtmAplication', ->
 
       it 'must navigate to default route', ->
          expect( app.getCurrentRoute() ).toBe 'some-hash'
+
+   describe 'Static apps', ->
+      App = null
+      apps = [
+         [ 'app1', new Marionette.Region 'el' : '#dsds' ]
+         [ 'app2', new Marionette.Region 'el' : '#dsds' ]
+      ]
+      beforeEach ->
+         App = new Extm.Application
+         App.onStart = ->
+         spyOn( App, 'onStart' )
+         App.addRegions regions : { regionName : '#region-element' }
+
+      afterEach ->
+         App = null
+
+      describe 'when adding static apps', ->
+
+         it 'must assign static apps as its property( _staticApps )', ->
+            App.addStaticApps apps
+            expect(App._staticApps).toEqual jasmine.any Array
+            expect(App._staticApps.length).toBe 2
+
+      describe 'when starting static apps', ->
+         describe 'when app starts', ->
+            spyOn( msgbus, 'showApp' ).and.callThrough()
+
+            beforeEach ->
+               #App.addStaticApps apps
+               App.start()
+
+            it 'must call the app launcher', ->
+
+
+

@@ -5,7 +5,7 @@ define [ 'extm', 'app/js/apps/header/header-view' ], ( Extm, HeaderView )->
       initialize : ( options )->
          { view } = options
 
-         @store().find 'view', view
+         @store().find 'view'
          @store().find 'unit', {building : 54}
          @wait()
 

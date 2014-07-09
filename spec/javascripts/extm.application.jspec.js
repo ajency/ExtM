@@ -79,7 +79,7 @@ describe('ExtmAplication', function() {
       return expect(App.getCurrentRoute()).toBe('new-route');
     });
   });
-  return describe('when current route not empty', function() {
+  describe('when current route not empty', function() {
     var app;
     app = {};
     beforeEach(function() {
@@ -97,6 +97,50 @@ describe('ExtmAplication', function() {
     });
     return it('must navigate to default route', function() {
       return expect(app.getCurrentRoute()).toBe('some-hash');
+    });
+  });
+  return describe('Static apps', function() {
+    var App, apps;
+    App = null;
+    apps = [
+      [
+        'app1', new Marionette.Region({
+          'el': '#dsds'
+        })
+      ], [
+        'app2', new Marionette.Region({
+          'el': '#dsds'
+        })
+      ]
+    ];
+    beforeEach(function() {
+      App = new Extm.Application;
+      App.onStart = function() {};
+      spyOn(App, 'onStart');
+      return App.addRegions({
+        regions: {
+          regionName: '#region-element'
+        }
+      });
+    });
+    afterEach(function() {
+      return App = null;
+    });
+    describe('when adding static apps', function() {
+      return it('must assign static apps as its property( _staticApps )', function() {
+        App.addStaticApps(apps);
+        expect(App._staticApps).toEqual(jasmine.any(Array));
+        return expect(App._staticApps.length).toBe(2);
+      });
+    });
+    return describe('when starting static apps', function() {
+      return describe('when app starts', function() {
+        spyOn(msgbus, 'showApp').and.callThrough();
+        beforeEach(function() {
+          return App.start();
+        });
+        return it('must call the app launcher', function() {});
+      });
     });
   });
 });

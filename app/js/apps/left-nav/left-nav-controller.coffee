@@ -6,7 +6,7 @@ define [ 'extm', 'app/js/apps/left-nav/left-nav-view' ], ( Extm, LeftNavView )->
          { view } = options
 
          @store().find 'view', view
-         @store().find 'unitw'
+         @store().find 'unit'
          @wait()
 
       onComplete : ( viewmodel, unitcollection )->

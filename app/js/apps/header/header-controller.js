@@ -14,7 +14,7 @@ define(['extm', 'app/js/apps/header/header-view'], function(Extm, HeaderView) {
     HeaderController.prototype.initialize = function(options) {
       var view;
       view = options.view;
-      this.store().find('view', view);
+      this.store().find('view');
       this.store().find('unit', {
         building: 54
       });
