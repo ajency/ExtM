@@ -12,8 +12,20 @@ define(['extm', 'app/js/apps/header/header-view'], function(Extm, HeaderView) {
     }
 
     HeaderController.prototype.initialize = function(options) {
-      this.region = options.region;
-      return this.region.show(new HeaderView);
+      var view;
+      view = options.view;
+      this.store().find('view', view);
+      this.store().find('unit', {
+        building: 54
+      });
+      return this.wait();
+    };
+
+    HeaderController.prototype.onComplete = function(model, collection) {
+      return this.show(new HeaderView({
+        collection: collection,
+        model: model
+      }));
     };
 
     return HeaderController;

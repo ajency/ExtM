@@ -3,7 +3,7 @@ var __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
 define(['extm', 'marionette'], function(Extm, Marionette) {
-  var CView, HeaderView;
+  var CView, LeftNavView;
   CView = (function(_super) {
     __extends(CView, _super);
 
@@ -18,20 +18,20 @@ define(['extm', 'marionette'], function(Extm, Marionette) {
     return CView;
 
   })(Marionette.ItemView);
-  return HeaderView = (function(_super) {
-    __extends(HeaderView, _super);
+  return LeftNavView = (function(_super) {
+    __extends(LeftNavView, _super);
 
-    function HeaderView() {
-      return HeaderView.__super__.constructor.apply(this, arguments);
+    function LeftNavView() {
+      return LeftNavView.__super__.constructor.apply(this, arguments);
     }
 
-    HeaderView.prototype.childView = CView;
+    LeftNavView.prototype.childView = CView;
 
-    HeaderView.prototype.childViewContainer = 'ul';
+    LeftNavView.prototype.childViewContainer = 'ul';
 
-    HeaderView.prototype.template = '<div>view name : {{name}} <img src="{{picture}}" /> </div> <ul></ul>';
+    LeftNavView.prototype.template = '<div>view name : {{name}} <img src="{{picture}}" /> </div> <ul></ul>';
 
-    return HeaderView;
+    return LeftNavView;
 
   })(Marionette.CompositeView);
 });

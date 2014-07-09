@@ -17,10 +17,10 @@ requirejs.config({
     jasminejquery: 'bower_components/jasmine-jquery/lib/jasmine-jquery',
     jqueryvalidate: 'bower_components/jquery.validation/dist/jquery.validate',
     plupload: 'bower_components/plupload/js/plupload.full.min',
-    backboneassociations: 'bower_components/backbone-associations/backbone-associations',
-    bootstraptour: 'bower_components/bootstrap-tour/build/js/bootstrap-tour.js',
+    async: 'bower_components/async/lib/async',
+    bootstraptour: 'bower_components/bootstrap-tour/build/js/bootstrap-tour',
     underscorestring: 'bower_components/underscore.string/lib/underscore.string',
-    extm: 'lib/extm.amd'
+    extm: 'tmp/extm.amd'
   },
   shim: {
     jquery: ['underscore'],
@@ -39,6 +39,8 @@ requirejs.config({
     plupload: {
       deps: ['jquery'],
       exports: 'plupload'
-    }
+    },
+    'entities-loader': ['extm'],
+    'apps-loader': ['entities-loader']
   }
 });

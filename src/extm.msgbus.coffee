@@ -11,6 +11,11 @@ msgbus.execute = ->
 msgbus.registerController = ( name, controller )->
    _Controllers[name] = controller
 
+msgbus.registerModel = ( name, model )->
+   _Models[name] = model
+
 msgbus.showApp = ( appName )->
    appLauncher = new AppLauncher appName
    appLauncher
+
+msgbus._store = new Extm.Store

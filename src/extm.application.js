@@ -5,15 +5,19 @@ var __hasProp = {}.hasOwnProperty,
 Extm.Application = (function(_super) {
   __extends(Application, _super);
 
-  function Application() {
-    return Application.__super__.constructor.apply(this, arguments);
-  }
-
   Application.prototype._staticApps = [];
 
   Application.prototype.histroyStarted = false;
 
   Application.prototype.defaultRoute = '';
+
+  function Application(options) {
+    if (options == null) {
+      options = {};
+    }
+    this.store = msgbus._store;
+    Application.__super__.constructor.call(this, options);
+  }
 
   Application.prototype.start = function(options) {
     if (options == null) {
@@ -76,7 +80,7 @@ Extm.Application = (function(_super) {
 
   Application.prototype._startStaticApps = function() {
     return _.each(this._staticApps, function(app, index) {
-      return msgbus.showApp(app[0]).insideRegion(app[1]).withOptions();
+      return msgbus.showApp(app[0]).insideRegion(app[1]).withOptions(_.isUndefined(app[2]) ? {} : app[2]);
     });
   };
 

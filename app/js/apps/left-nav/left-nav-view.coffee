@@ -6,7 +6,7 @@ define [ 'extm', 'marionette' ], ( Extm, Marionette )->
       template : '{{name}}'
 
 
-   class HeaderView extends Marionette.CompositeView
+   class LeftNavView extends Marionette.CompositeView
 
       childView : CView
 

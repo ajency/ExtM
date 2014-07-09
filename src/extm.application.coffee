@@ -12,6 +12,10 @@ class Extm.Application extends Marionette.Application
    # @see: ExtmApplication.setDefaultRoute(route)
    defaultRoute : ''
 
+   constructor : ( options = {} )->
+      @store = msgbus._store
+      super options
+
    # @override: start method of marionette add some extra functionality
    # @params : Object
    #     { regions : { regionName : '#element' }}
@@ -67,4 +71,4 @@ class Extm.Application extends Marionette.Application
       _.each @_staticApps, ( app, index )->
          msgbus.showApp app[0]
                .insideRegion app[1]
-               .withOptions()
+               .withOptions if _.isUndefined(app[2]) then {} else app[2]

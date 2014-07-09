@@ -39,6 +39,19 @@
 will help in testing</p>
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="nb">window</span><span class="p">.</span><span class="nv">msgbus = </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">Wreqr</span><span class="p">.</span><span class="nx">radio</span><span class="p">.</span><span class="nx">channel</span> <span class="s">&quot;global&quot;</span>
+
+<span class="nv">msgbus.request = </span><span class="nf">-&gt;</span>
+   <span class="nx">msgbus</span><span class="p">.</span><span class="nx">reqres</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">apply</span> <span class="nx">msgbus</span><span class="p">.</span><span class="nx">reqres</span><span class="p">,</span> <span class="nx">arguments</span>
+
+<span class="nv">msgbus.execute = </span><span class="nf">-&gt;</span>
+   <span class="nx">msgbus</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">request</span><span class="p">.</span><span class="nx">apply</span> <span class="nx">msgbus</span><span class="p">.</span><span class="nx">commands</span><span class="p">,</span> <span class="nx">arguments</span>
+
+<span class="nv">msgbus.registerController = </span><span class="nf">( name, controller )-&gt;</span>
+   <span class="nx">_Controllers</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">controller</span>
+
+<span class="nv">msgbus.showApp = </span><span class="nf">( appName )-&gt;</span>
+   <span class="nv">appLauncher = </span><span class="k">new</span> <span class="nx">AppLauncher</span> <span class="nx">appName</span>
+   <span class="nx">appLauncher</span>
 </pre></div>
         </td>
       </tr>

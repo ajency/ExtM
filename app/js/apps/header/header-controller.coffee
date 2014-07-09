@@ -2,11 +2,17 @@ define [ 'extm', 'app/js/apps/header/header-view' ], ( Extm, HeaderView )->
 
    class HeaderController extends Extm.RegionController
 
-      initialize : (options)->
+      initialize : ( options )->
+         { view } = options
 
-         { @region } = options
+         @store().find 'view', view
+         @store().find 'unit', {building : 54}
+         @wait()
 
-         @region.show new HeaderView
+      onComplete : ( model, collection )->
+         @show new HeaderView
+                     collection : collection
+                     model : model
 
    msgbus.registerController 'header', HeaderController
 

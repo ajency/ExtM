@@ -1,5 +1,5 @@
 
-_.extend Backbone.AssociatedModel::,
+_.extend Backbone.Model::,
 
   # Extended implementation of Bacbone.Model.sync to work with wordpress ajax
   # Purpose of this function is to make the backbone sync compatible with

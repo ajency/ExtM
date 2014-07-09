@@ -53,6 +53,10 @@ module.exports = function(grunt) {
         src: 'src/build/extm.core.js',
         dest: 'tmp/extm.core.js'
       },
+      test_file_amd: {
+        src: 'src/build/extm.amd.js',
+        dest: 'tmp/extm.amd.js'
+      },
       amd: {
         src: 'src/build/extm.amd.js',
         dest: 'lib/extm.amd.js'
@@ -77,7 +81,7 @@ module.exports = function(grunt) {
     watch: {
       extmtestbuild: {
         files: ['src/**/*.coffee'],
-        tasks: ['preprocess:test_file']
+        tasks: ['preprocess:test_file_amd']
       }
     }
   });

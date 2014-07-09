@@ -1,20 +1,20 @@
 
 var Extm;
 
-Extm = (function ( global, Backbone, _ , Marionette, Mustache) {
+Extm = (function ( global, Backbone, _ , Marionette, Mustache, async) {
 
     "use strict";
 
     Extm = {};
     Extm.$ = Backbone.$;
 
+    //@include ../extm.wp.model.js
+
     //@include ../extm.controllers.js
 
     //@include ../extm.applauncher.js
+    //@include ../extm.store.js
     //@include ../extm.msgbus.js
-
-    //@include ../extm.wp.model.js
-    //@include ../extm.wp.collection.js
 
     //@include ../extm.application.js
     //@include ../extm.region.controller.js
@@ -25,4 +25,4 @@ Extm = (function ( global, Backbone, _ , Marionette, Mustache) {
 
     return Extm;
 
-})( this, Backbone, _, Marionette, Mustache );
+})( this, Backbone, _, Marionette, Mustache, async );

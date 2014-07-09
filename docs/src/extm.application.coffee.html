@@ -45,6 +45,8 @@
         </td>
         <td class="code highlight"><div class="highlight"><pre><span class="k">class</span> <span class="nx">Extm</span><span class="p">.</span><span class="nx">Application</span> <span class="k">extends</span> <span class="nx">Marionette</span><span class="p">.</span><span class="nx">Application</span>
 
+   <span class="nv">_staticApps : </span><span class="p">[]</span>
+
 
 </pre></div>
         </td>
@@ -181,6 +183,7 @@ calling start of Marionette.Application</p>
          <span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
          <span class="nx">@navigate</span><span class="p">(</span> <span class="nx">@defaultRoute</span><span class="p">,</span> <span class="nv">trigger : </span><span class="kc">true</span> <span class="p">)</span> <span class="k">if</span> <span class="nx">@getCurrentRoute</span><span class="p">()</span> <span class="o">is</span> <span class="s">&#39;&#39;</span>
          <span class="vi">@histroyStarted = </span><span class="kc">true</span>
+         <span class="nx">@_startStaticApps</span><span class="p">()</span> <span class="k">if</span> <span class="nx">@_hasStaticApps</span><span class="p">()</span>
 
 
 </pre></div>
@@ -217,6 +220,18 @@ calling start of Marionette.Application</p>
    <span class="nv">getCurrentRoute : </span><span class="nf">-&gt;</span>
       <span class="nv">frag = </span><span class="nx">Backbone</span><span class="p">.</span><span class="nx">history</span><span class="p">.</span><span class="nx">fragment</span>
       <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span> <span class="nx">frag</span> <span class="p">)</span> <span class="k">then</span> <span class="s">&#39;&#39;</span> <span class="k">else</span> <span class="nx">frag</span>
+
+   <span class="nv">addStaticApps : </span><span class="nf">( apps )-&gt;</span>
+      <span class="vi">@_staticApps = </span><span class="nx">apps</span>
+
+   <span class="nv">_hasStaticApps : </span><span class="nf">-&gt;</span>
+      <span class="nx">_</span><span class="p">.</span><span class="nx">size</span><span class="p">(</span> <span class="nx">@_staticApps</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+   <span class="nv">_startStaticApps : </span><span class="nf">-&gt;</span>
+      <span class="nx">_</span><span class="p">.</span><span class="nx">each</span> <span class="nx">@_staticApps</span><span class="p">,</span> <span class="nf">( app, index )-&gt;</span>
+         <span class="nx">msgbus</span><span class="p">.</span><span class="nx">showApp</span> <span class="nx">app</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+               <span class="p">.</span><span class="nx">insideRegion</span> <span class="nx">app</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+               <span class="p">.</span><span class="nx">withOptions</span><span class="p">()</span>
 </pre></div>
         </td>
       </tr>

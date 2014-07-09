@@ -13,8 +13,14 @@ msgbus.registerController = function(name, controller) {
   return _Controllers[name] = controller;
 };
 
+msgbus.registerModel = function(name, model) {
+  return _Models[name] = model;
+};
+
 msgbus.showApp = function(appName) {
   var appLauncher;
   appLauncher = new AppLauncher(appName);
   return appLauncher;
 };
+
+msgbus._store = new Extm.Store;

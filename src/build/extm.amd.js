@@ -16,11 +16,11 @@
                         "backbone",
                         "marionette",
                         "mustache",
-                        "jqueryvalidate",
-                        "backboneassociations"], factory );
+                        "async",
+                        "jqueryvalidate"], factory );
     }
 
-})( this, function ( _, Backbone, Marionette, Mustache ) {
+})( this, function ( _, Backbone, Marionette, Mustache, async ) {
 
     //@include extm.core.js
 
