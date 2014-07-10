@@ -45,7 +45,37 @@ class Extm.Store
             deferred.resolve model
          .promise()
 
+      if _.isArray args
+         models = []
+         _.each args, (id)->
+            model = _models[name].get id
+            models.push(model) if not _.isUndefined model
+
+         collection = new Backbone.Collection models
+
+         if args.length isnt collection.length
+            collection.url = "#{AJAXURL}"
+            return $.Deferred ( deferred )->
+               collection.fetch
+                  add : true
+                  remove : false
+                  data :
+                     action : "fetch-#{name}s"
+                     ids : args
+                  success : ( collection )->
+                     _models[name].add collection.models
+                     deferred.resolve collection
+                  error : (error)->
+                     deferred.reject error
+            .promise()
+
+
+         return $.Deferred ( deferred )->
+            deferred.resolve collection
+         .promise()
+
       if _.isObject args
+
          models = @models[name].where args
          collection = new Backbone.Collection models
 

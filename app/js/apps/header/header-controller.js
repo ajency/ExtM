@@ -14,17 +14,14 @@ define(['extm', 'app/js/apps/header/header-view'], function(Extm, HeaderView) {
     HeaderController.prototype.initialize = function(options) {
       var view;
       view = options.view;
-      this.store().find('view');
-      this.store().find('unit', {
-        building: 54
-      });
+      this.store().find('view', [11, 12, 13]);
       return this.wait();
     };
 
-    HeaderController.prototype.onComplete = function(model, collection) {
+    HeaderController.prototype.onComplete = function(viewCollection) {
+      console.log(viewCollection);
       return this.show(new HeaderView({
-        collection: collection,
-        model: model
+        collection: viewCollection
       }));
     };
 

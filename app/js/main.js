@@ -4,7 +4,6 @@ var __slice = [].slice;
 define('apps-loader', ['app/js/apps/header/header-controller', 'app/js/apps/left-nav/left-nav-controller'], function() {
   var Controllers;
   Controllers = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
-  return console.log(Controllers);
 });
 
 require(['extm', 'apps-loader'], function(Extm) {

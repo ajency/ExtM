@@ -5,14 +5,13 @@ define [ 'extm', 'app/js/apps/header/header-view' ], ( Extm, HeaderView )->
       initialize : ( options )->
          { view } = options
 
-         @store().find 'view'
-         @store().find 'unit', {building : 54}
+         @store().find 'view', [11, 12, 13]
          @wait()
 
-      onComplete : ( model, collection )->
+      onComplete : ( viewCollection )->
+         console.log viewCollection
          @show new HeaderView
-                     collection : collection
-                     model : model
+                     collection : viewCollection
 
    msgbus.registerController 'header', HeaderController
 

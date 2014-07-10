@@ -5,8 +5,6 @@ define 'apps-loader', [
       'app/js/apps/left-nav/left-nav-controller'
    ], ( Controllers... )->
 
-   console.log Controllers
-
 require [ 'extm', 'apps-loader' ], ( Extm )->
 
    window.App = new Extm.Application
